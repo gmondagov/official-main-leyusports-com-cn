@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gmondagov.github.io/official-main-leyusports-com-cn/sitemap.xml
