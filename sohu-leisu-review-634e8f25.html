@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雷速 · 再访与持续关注</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f0f2f5;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 880px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    /* 卡片系统 —— 浅灰背景、细边框、柔和阴影 */
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.02);
+      padding: 2rem 2.2rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    /* hero 区域 —— 开场短句 + 轻微节奏 */
+    .hero-card {
+      background: #ffffff;
+      border-left: 5px solid #475569;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: #64748b;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: #475569;
+      max-width: 660px;
+    }
+
+    /* 承接段落、特点列表、温和结尾 */
+    .section-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #64748b;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.9rem;
+    }
+
+    .intro-text p {
+      margin-bottom: 1.1rem;
+    }
+
+    .intro-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 0.25rem;
+    }
+
+    .feature-item {
+      background: #f8fafc;
+      border: 1px solid #e9edf2;
+      border-radius: 14px;
+      padding: 1.2rem 1.3rem;
+      transition: background 0.15s;
+    }
+
+    .feature-item:hover {
+      background: #f1f5f9;
+    }
+
+    .feature-item strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-item span {
+      font-size: 0.92rem;
+      color: #475569;
+    }
+
+    .closing-note {
+      font-size: 1rem;
+      color: #334155;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 1.7rem;
+      margin-top: 0.5rem;
+    }
+
+    .link-natural {
+      color: #1e293b;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #94a3b8;
+      font-weight: 500;
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+
+    .link-natural:hover {
+      color: #0f172a;
+      text-decoration-color: #334155;
+    }
+
+    /* FAQ 摘要风格 */
+    .faq-mini {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .faq-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #1e293b;
+      min-width: 5.5rem;
+      flex-shrink: 0;
+    }
+
+    .faq-a {
+      color: #475569;
+    }
+
+    .faq-a a {
+      color: #1e293b;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: #b0bcc9;
+      font-weight: 400;
+    }
+
+    .faq-a a:hover {
+      text-decoration-color: #1e293b;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: #e2e8f0;
+      margin: 0.5rem 0 1.25rem 0;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 640px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .card {
+        padding: 1.4rem 1.2rem;
+        border-radius: 14px;
+      }
+      .hero-title {
+        font-size: 1.6rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+      .faq-row {
+        flex-direction: column;
+        gap: 0.1rem;
+      }
+      .faq-q {
+        min-width: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.35rem;
+      }
+      .hero-card {
+        border-left-width: 4px;
+      }
+      .feature-item {
+        padding: 1rem 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 开场短句：再次访问的线索 -->
+  <div class="card hero-card">
+    <div class="hero-tag">· 再访笔记</div>
+    <h1 class="hero-title">回到这里，<br>像打开一本标记过的书。</h1>
+    <p class="hero-sub">收藏栏里放着，偶尔点开，每次都有熟悉的骨架和新鲜的细节。</p>
+  </div>
+
+  <!-- 承接段落：从持续关注切入 -->
+  <div class="card intro-text">
+    <span class="section-label">⏤ 持续关注的逻辑</span>
+    <p>信息源不必多，但要经得起回访。<a href="https://sohu-leisu.com" class="link-natural">雷速</a> 并不追逐每一次跳动，而是提供一种可依赖的节奏——你清楚它的结构，也相信它会在你需要时给出恰好的更新。</p>
+    <p>真正值得收藏的站点，往往不是最喧哗的那个，而是当你隔几天再打开，依然能快速找到重点、不被冗余裹挟的地方。这种体验，来自对信息排列的克制，也来自对阅读习惯的尊重。</p>
+  </div>
+
+  <!-- 特点列表：卡片式 / 要点密集 -->
+  <div class="card">
+    <span class="section-label">⏤ 几个值得记住的侧面</span>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <strong>条目清晰</strong>
+        <span>内容分层有次序，扫一眼就能判断是否需要深入。</span>
+      </div>
+      <div class="feature-item">
+        <strong>节奏稳定</strong>
+        <span>不忽然轰炸，也不长期沉默，更新频率可预期。</span>
+      </div>
+      <div class="feature-item">
+        <strong>低噪点</strong>
+        <span>没有铺满的动效、弹窗或分散注意力的边栏。</span>
+      </div>
+      <div class="feature-item">
+        <strong>收藏友好</strong>
+        <span>URL 结构稳定，再次访问时不会迷失在重定向里。</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 场景提示 / FAQ 摘要 —— 温和、实用 -->
+  <div class="card">
+    <span class="section-label">⏤ 常见场景 · 简短备忘</span>
+    <div class="faq-mini">
+      <div class="faq-row">
+        <div class="faq-q">隔几天想起</div>
+        <div class="faq-a">直接走链接，首页概览就能唤起上次的记忆。无需重新适应布局。</div>
+      </div>
+      <div class="faq-row">
+        <div class="faq-q">想确认某条内容</div>
+        <div class="faq-a">分类和标签体系一致，按图索骥即可。也可在站内搜索框用关键词定位。</div>
+      </div>
+      <div class="faq-row">
+        <div class="faq-q">习惯性打开</div>
+        <div class="faq-a">把它放在书签栏的固定位置，就像每天路过同一个窗口。稳定感本身也是一种价值。</div>
+      </div>
+    </div>
+    <hr>
+    <p style="font-size: 0.9rem; color: #64748b;">如果你已经来过，值得再留意一次细节的微调。如果还未收藏，现在也不晚。</p>
+  </div>
+
+  <!-- 温和结尾 + 自然链接再次出现 -->
+  <div class="card" style="background: #fafcff;">
+    <div class="closing-note">
+      <p style="margin-bottom: 0.5rem;">无论是第一次打开，还是第无数次回访，<a href="https://sohu-leisu.com" class="link-natural">雷速</a> 都在那里——用同一套语言，回答不同阶段的问题。</p>
+      <p style="color: #64748b; font-size: 0.9rem; margin-top: 0.6rem;">把链接放在收藏夹里，让回访成为一种习惯，而不是一次搜索。</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
