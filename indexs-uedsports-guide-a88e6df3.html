@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ued体育 · 一个朴素的观赛入口</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background: #f2f4f6;
+            color: #2d3436;
+            line-height: 1.75;
+            padding: 2rem 1.2rem;
+        }
+        .page {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        /* header / 博客头 */
+        .blog-header {
+            margin-bottom: 2.8rem;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #dfe4e8;
+        }
+        .blog-header h1 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #1e272e;
+        }
+        .blog-header .sub {
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            color: #636e72;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e9edf0;
+            padding: 1.8rem 1.6rem;
+            margin-bottom: 2rem;
+        }
+
+        /* 导语卡片 */
+        .intro-card {
+            background: #ffffff;
+        }
+        .intro-card .label-tag {
+            display: inline-block;
+            background: #eef1f4;
+            color: #2d3436;
+            font-size: 0.75rem;
+            padding: 0.1rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .intro-card p {
+            font-size: 1.04rem;
+            color: #2d3436;
+        }
+        .intro-card p:not(:last-child) {
+            margin-bottom: 1.1rem;
+        }
+
+        /* 引用块 */
+        .quote-box {
+            background: #f7f9fb;
+            border-left: 4px solid #a0b4c4;
+            padding: 1.2rem 1.4rem;
+            margin: 1.6rem 0 1.2rem 0;
+            border-radius: 0 10px 10px 0;
+            color: #3d4a51;
+        }
+        .quote-box p {
+            font-size: 0.98rem;
+            margin-bottom: 0.2rem;
+        }
+        .quote-box cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-size: 0.85rem;
+            color: #6c7a80;
+        }
+
+        /* 正文段落卡片 */
+        .body-text h2 {
+            font-size: 1.35rem;
+            font-weight: 500;
+            margin-bottom: 0.9rem;
+            color: #1e272e;
+            letter-spacing: -0.01em;
+            border-left: 3px solid #b0c4d4;
+            padding-left: 0.8rem;
+        }
+        .body-text p {
+            margin-bottom: 1.1rem;
+        }
+        .body-text a {
+            color: #2d6a8f;
+            text-decoration: none;
+            border-bottom: 1px solid #cbd9e3;
+            font-weight: 450;
+        }
+        .body-text a:hover {
+            border-bottom-color: #2d6a8f;
+        }
+
+        /* 小细节卡片（FAQ摘要风格） */
+        .faq-mini {
+            background: #ffffff;
+            padding: 1.5rem 1.6rem;
+        }
+        .faq-mini h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #1e272e;
+            margin-bottom: 0.2rem;
+        }
+        .faq-mini .q-item {
+            margin-top: 1.1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #edf1f4;
+        }
+        .faq-mini .q-item:first-of-type {
+            border-top: none;
+            margin-top: 0.4rem;
+            padding-top: 0;
+        }
+        .faq-mini .question {
+            font-weight: 500;
+            color: #2d3436;
+            font-size: 0.98rem;
+        }
+        .faq-mini .answer {
+            font-size: 0.92rem;
+            color: #4b5a61;
+            margin-top: 0.2rem;
+        }
+
+        /* 访问句 / 落款 */
+        .visit-note {
+            text-align: center;
+            padding: 1.2rem 0 0.2rem 0;
+            color: #636e72;
+            font-size: 0.95rem;
+            border-top: 1px solid #dfe4e8;
+            margin-top: 1.5rem;
+        }
+        .visit-note a {
+            color: #2d6a8f;
+            text-decoration: none;
+            border-bottom: 1px solid #cbd9e3;
+        }
+        .visit-note a:hover {
+            border-bottom-color: #2d6a8f;
+        }
+
+        .footer-meta {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: #859198;
+            text-align: center;
+        }
+
+        @media (max-width: 520px) {
+            body { padding: 1.2rem 0.8rem; }
+            .card { padding: 1.3rem 1rem; }
+            .blog-header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 博客标题 -->
+    <header class="blog-header">
+        <h1>一个入口的日常</h1>
+        <div class="sub">关于 ued体育 的零散笔记 · 稳定就好</div>
+    </header>
+
+    <!-- 导语卡片：温和介绍+切入点 -->
+    <div class="card intro-card">
+        <span class="label-tag">页面说明</span>
+        <p>
+            很多网站每天被打开无数次，但用户记住的往往不是它的界面，而是它是否「在」。 
+            对我来说，<a href="https://indexs-uedsports.com">ued体育</a> 就是这样一个存在——不需要刻意强调，只是安静地待在书签栏里，需要的时候总能顺利打开。
+        </p>
+        <p>
+            没有弹窗干扰，没有夸张的标语，页面加载速度也一直很稳定。这大概是它最朴素的优点，也是我持续使用它的理由。
+        </p>
+    </div>
+
+    <!-- 引用提示：类似博客中引述一句话 -->
+    <div class="quote-box">
+        <p>“当你习惯一个入口之后，它就不再是工具，而是日常的一部分。”</p>
+        <cite>—— 一位普通用户的浏览心得</cite>
+    </div>
+
+    <!-- 正文段落（多段） -->
+    <div class="card body-text">
+        <h2>关于「稳定入口」的几件事</h2>
+        <p>
+            不管是早晨查看比赛结果，还是晚上随手翻一翻动态，最怕的就是页面卡顿或者跳转到奇怪的地方。 
+            用了<a href="https://indexs-uedsports.com">ued体育</a>一段时间，最大的感受就是它的「无感」——没有多余的转场动画，没有自动播放的视频，点开就是内容。这种克制在如今反而显得难得。
+        </p>
+        <p>
+            另一个细节是它的页面结构比较清晰，没有把信息全部堆在首屏。无论是比分、赛程还是数据，都按照逻辑分区排列，找东西不需要翻太深。对于只是想快速获取信息的人来说，这种设计很友好。
+        </p>
+        <p>
+            当然，每个人的使用习惯不同。有人喜欢功能丰富的平台，有人只想要一个干干净净的入口。我属于后者，所以 <a href="https://indexs-uedsports.com">ued体育</a> 恰好符合我的预期。
+        </p>
+    </div>
+
+    <!-- FAQ摘要（非完整FAQ，只保留两三个常见问题式表述） -->
+    <div class="card faq-mini">
+        <h3>一些常被问起的事</h3>
+        <div class="q-item">
+            <div class="question">这个入口一直都能用吗？</div>
+            <div class="answer">就我的体验来看，大部分时间都很稳定。偶尔会有短时维护，但恢复速度也比较快。</div>
+        </div>
+        <div class="q-item">
+            <div class="question">页面会不会很复杂？</div>
+            <div class="answer">不复杂。整体偏简洁，没有多余的功能堆砌，首页直接展示核心内容。</div>
+        </div>
+        <div class="q-item">
+            <div class="question">想推荐给朋友，怎么说比较合适？</div>
+            <div class="answer">就说这是一个可以安静看体育信息的地方，不用折腾，打开就行。</div>
+        </div>
+    </div>
+
+    <!-- 访问句（嵌入链接，自然句子） -->
+    <div class="visit-note">
+        <p>如果你也在找一个稳定、不吵闹的体育信息页面，不妨试试 <a href="https://indexs-uedsports.com">ued体育</a> 。</p>
+    </div>
+
+    <div class="footer-meta">
+        <span>— 写在日常浏览的间隙 · 无需刻意记住 —</span>
+    </div>
+
+</div>
+</body>
+</html>
