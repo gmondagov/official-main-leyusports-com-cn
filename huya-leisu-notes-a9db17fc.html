@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雷速 — 使用知识库入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fafafa;
+      color: #1e2b3c;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 720px;
+      width: 100%;
+    }
+
+    /* 头部 —— 极简标识 */
+    .site-header {
+      border-bottom: 1px solid #e6e9ed;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .site-header h1 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #0b1b2b;
+    }
+
+    .site-header p {
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+      color: #5b6777;
+    }
+
+    /* 主内容区域 */
+    .hero-remark {
+      background: #ffffff;
+      padding: 2rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02), 0 4px 12px rgba(0,0,0,0.03);
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-remark p {
+      font-size: 1.05rem;
+      color: #1f2a3a;
+    }
+
+    .hero-remark strong {
+      font-weight: 600;
+      color: #0b1b2b;
+    }
+
+    /* 目录感：卡片网格布局 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.4rem;
+    }
+
+    @media (min-width: 560px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 3px 10px rgba(0,0,0,0.03);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #0b1b2b;
+      border-left: 3px solid #2f7fbf;
+      padding-left: 0.7rem;
+    }
+
+    .card p, .card ul {
+      font-size: 0.94rem;
+      color: #3a465a;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card li {
+      margin-bottom: 0.35rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .card li::before {
+      content: "·";
+      position: absolute;
+      left: 0.1rem;
+      color: #2f7fbf;
+      font-weight: bold;
+    }
+
+    /* 提示区 */
+    .notice-box {
+      background: #f2f5f9;
+      border-left: 4px solid #2f7fbf;
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 2.2rem;
+    }
+
+    .notice-box p {
+      font-size: 0.95rem;
+      color: #1f2a3a;
+      margin: 0.2rem 0;
+    }
+
+    .notice-box .label {
+      font-weight: 600;
+      color: #0b1b2b;
+      display: inline-block;
+      margin-right: 0.3rem;
+    }
+
+    /* 相关信息区（FAQ 摘要） */
+    .faq-section {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.6rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      margin-bottom: 2.4rem;
+    }
+
+    .faq-section h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      color: #0b1b2b;
+      border-bottom: 1px solid #e6e9ed;
+      padding-bottom: 0.6rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-item .q {
+      font-weight: 600;
+      color: #1e2b3c;
+      margin-bottom: 0.15rem;
+    }
+
+    .faq-item .a {
+      font-size: 0.93rem;
+      color: #4d5b6d;
+      padding-left: 0.2rem;
+    }
+
+    /* 页脚 */
+    .site-footer {
+      border-top: 1px solid #e6e9ed;
+      padding-top: 1.5rem;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+      color: #6c7a8a;
+      text-align: center;
+    }
+
+    .site-footer a {
+      color: #1e2b3c;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #bcc6d4;
+    }
+
+    .site-footer a:hover {
+      color: #0b1b2b;
+      text-decoration-color: #2f7fbf;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 480px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .hero-remark {
+        padding: 1.5rem 1.2rem;
+      }
+      .card {
+        padding: 1.2rem 1rem;
+      }
+      .faq-section {
+        padding: 1.2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- 头部 -->
+    <header class="site-header">
+      <h1>雷速</h1>
+      <p>知识库入口 · 使用说明 · 站点定位</p>
+    </header>
+
+    <!-- 介绍 / hero 说明 -->
+    <div class="hero-remark">
+      <p>
+        <strong>雷速</strong> 是一个面向信息获取与工具查阅的知识型站点。
+        本站以清晰、克制的方式整理与「雷速」相关的功能说明、场景指引与常见问题，
+        帮助访问者快速判断该网站是否满足自己的需求。
+      </p>
+      <p style="margin-top: 1rem;">
+        如果你正在寻找一个结构化的说明页，而不是繁复的营销内容，那么这里就是合适的起点。
+      </p>
+    </div>
+
+    <!-- 目录感卡片区：特点 + 场景 -->
+    <div class="card-grid">
+      <div class="card">
+        <h3>站点特点</h3>
+        <ul>
+          <li>以知识库逻辑组织内容</li>
+          <li>极简界面，无干扰元素</li>
+          <li>侧重真实使用场景</li>
+          <li>持续补充说明与提示</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>适用场景</h3>
+        <ul>
+          <li>想了解 <a href="https://huya-leisu.com" style="color: #1e2b3c; text-decoration: underline; text-underline-offset: 2px;">雷速</a> 提供什么信息</li>
+          <li>快速浏览功能模块</li>
+          <li>查找使用注意事项</li>
+          <li>获取 FAQ 摘要</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 提示区 -->
+    <div class="notice-box">
+      <p><span class="label">提示</span> 本页是知识库入口页，并非产品本身。所有说明均基于站内已有内容整理，请以实际页面为准。</p>
+      <p style="margin-top: 0.5rem;"><span class="label">建议</span> 如果你需要更详细的操作指引，可直接浏览 <a href="https://huya-leisu.com" style="color: #1e2b3c; text-decoration: underline; text-underline-offset: 2px;">雷速</a> 内对应板块。</p>
+    </div>
+
+    <!-- FAQ 摘要 / 相关信息区 -->
+    <div class="faq-section">
+      <h2>常见问题摘要</h2>
+      <div class="faq-item">
+        <p class="q">Q：雷速 主要提供哪类信息？</p>
+        <p class="a">网站围绕工具使用、场景说明与知识整理展开，不包含主观评测或推销内容。</p>
+      </div>
+      <div class="faq-item">
+        <p class="q">Q：页面内容是否定期更新？</p>
+        <p class="a">会随着站内知识库调整而修订，保持说明与实际功能一致。</p>
+      </div>
+      <div class="faq-item">
+        <p class="q">Q：如何获取更具体的帮助？</p>
+        <p class="a">你可以直接访问 <a href="https://huya-leisu.com" style="color: #1e2b3c; text-decoration: underline; text-underline-offset: 2px;">雷速</a> 站点，查看各个板块的详细说明。</p>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+      <p>基于知识库入口方向整理 · 内容仅供参考</p>
+      <p style="margin-top: 0.3rem;">
+        <a href="https://huya-leisu.com">雷速</a> — 说明页 · 目录式布局
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
